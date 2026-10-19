@@ -1,0 +1,20 @@
+# Runtime dependencies, pinned to the versions tested on 2026-10-13 (Python 3.11).
+fastapi==0.143.0
+starlette==1.7.0
+uvicorn==0.32.1
+pydantic==2.14.1
+pydantic-settings==2.15.0
+psycopg==3.3.6
+psycopg-binary==3.3.6
+psycopg-pool==3.3.3
+httpx==0.28.1
+pyjwt==2.15.1
+cryptography==50.0.2
+snowflake-connector-python==4.8.0
+requests==2.34.2
+tzdata==2026.5
+# MIS module and Dump Scheduler (2026-10-17)
+xlsxwriter==3.2.9
+openpyxl==3.1.5
+croniter==6.2.4
+python-multipart==0.0.32

@@ -1,0 +1,1200 @@
+[
+ {
+  "slug": "dc-gen-clr",
+  "name": "DC-GEN-CLR",
+  "description": "DC-GEN-CLR",
+  "group_by": [
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "GEN_ART_NUMBER",
+   "GEN_ART_DESC",
+   "MRP",
+   "REG_SEG",
+   "MERGE_VENDOR_CODE",
+   "M_FIT",
+   "M_FAB_MAIN_MVGR_1",
+   "M_FAB_MAIN_MVGR_2",
+   "M_WEAVE_01",
+   "M_WEAVE_02",
+   "NEW_COLOR_CODE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "dc-mj",
+  "name": "DC-MJ",
+  "description": "DC-MJ",
+  "group_by": [
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "dc-mj-clr",
+  "name": "DC-MJ-CLR",
+  "description": "DC-MJ-CLR",
+  "group_by": [
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "NEW_COLOR_CODE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "dc-mj-sz",
+  "name": "DC-MJ-SZ",
+  "description": "DC-MJ-SZ",
+  "group_by": [
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "NEW_SIZE_DESC"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-gen-clr",
+  "name": "RDC-GEN-CLR",
+  "description": "RDC-GEN-CLR",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "GEN_ART_NUMBER",
+   "GEN_ART_DESC",
+   "MRP",
+   "REG_SEG",
+   "MERGE_VENDOR_CODE",
+   "M_FIT",
+   "M_FAB_MAIN_MVGR_1",
+   "M_FAB_MAIN_MVGR_2",
+   "M_WEAVE_01",
+   "M_WEAVE_02",
+   "NEW_COLOR_CODE",
+   "ZONE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj",
+  "name": "RDC-MJ",
+  "description": "RDC-MJ",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj-clr",
+  "name": "RDC-MJ-CLR",
+  "description": "RDC-MJ-CLR",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "NEW_COLOR_CODE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj-fab-mvgr1",
+  "name": "RDC-MJ-FAB-MVGR1",
+  "description": "RDC-MJ-FAB-MVGR1",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "M_FAB_MAIN_MVGR_1"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj-fab-mvgr2",
+  "name": "RDC-MJ-FAB-MVGR2",
+  "description": "RDC-MJ-FAB-MVGR2",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "M_FAB_MAIN_MVGR_2"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj-fit",
+  "name": "RDC-MJ-FIT",
+  "description": "RDC-MJ-FIT",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "M_FIT"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj-sz",
+  "name": "RDC-MJ-SZ",
+  "description": "RDC-MJ-SZ",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "NEW_SIZE_DESC"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj-weave-01",
+  "name": "RDC-MJ-WEAVE_01",
+  "description": "RDC-MJ-WEAVE_01",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "M_WEAVE_01"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-mj-fab-weave-02",
+  "name": "RDC-MJ-WEAVE_02",
+  "description": "RDC-MJ-WEAVE_02",
+  "group_by": [
+   "RDC_CD",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "SEG",
+   "M_WEAVE_02"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "rdc-var-article-planning",
+  "name": "RDC-VAR-ARTICLE-PLANNING",
+  "description": "RDC-VAR-ARTICLE-PLANNING",
+  "group_by": [
+   "RDC_CD",
+   "RDC_NM",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "MC_CODE",
+   "ARTICLE_NUMBER",
+   "ARTICLE_DESC"
+  ],
+  "measures": [],
+  "windows": [
+   "TD"
+  ]
+ },
+ {
+  "slug": "rdc-var-article-rpt",
+  "name": "RDC-VAR-ARTICLE-RPT",
+  "description": "RDC-VAR-ARTICLE-RPT",
+  "group_by": [
+   "RDC_CD",
+   "RDC_NM",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "MC_CODE",
+   "ARTICLE_NUMBER",
+   "ARTICLE_DESC"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj",
+  "name": "ST-MJ",
+  "description": "ST-MJ",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "ST_NM",
+   "SEG",
+   "DIV",
+   "SUB_DIV"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS",
+   "DATA_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH",
+   "RANGE"
+  ]
+ },
+ {
+  "slug": "st-mj-clr",
+  "name": "ST-MJ-CLR",
+  "description": "ST-MJ-CLR",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "ST_NM",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "NEW_COLOR_CODE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS",
+   "DATA_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH",
+   "RANGE"
+  ]
+ },
+ {
+  "slug": "st-mj-fab-mvgr1",
+  "name": "ST-MJ-FAB-MVGR1",
+  "description": "ST-MJ-FAB-MVGR1",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "DIV",
+   "SUB_DIV",
+   "SEG",
+   "M_FAB_MAIN_MVGR_1",
+   "ST_NM"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-fab-mvgr2",
+  "name": "ST-MJ-FAB-MVGR2",
+  "description": "ST-MJ-FAB-MVGR2",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "DIV",
+   "SUB_DIV",
+   "SEG",
+   "M_FAB_MAIN_MVGR_2",
+   "ST_NM"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-fit",
+  "name": "ST-MJ-FIT",
+  "description": "ST-MJ-FIT",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "DIV",
+   "SUB_DIV",
+   "SEG",
+   "M_FIT"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-gen-clr",
+  "name": "ST-MJ-GEN-CLR",
+  "description": "ST-MJ-GEN-CLE",
+  "group_by": [
+   "ST_NM",
+   "ST_CD",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "MC_CODE",
+   "MC_DESC",
+   "NEW_COLOR_CODE",
+   "MRP",
+   "GEN_ART_NUMBER",
+   "GEN_ART_DESC",
+   "VENDOR_CODE",
+   "MERGE_VENDOR_CODE",
+   "MERGE_VENDOR_NAME",
+   "M_FAB_MAIN_MVGR_1",
+   "M_FAB_MAIN_MVGR_2",
+   "M_WEAVE_01",
+   "M_WEAVE_02",
+   "M_FIT",
+   "REG_SEG"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-mrp",
+  "name": "ST-MJ-MRP",
+  "description": "ST-MJ-MRP",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "DIV",
+   "SUB_DIV",
+   "SEG",
+   "MRP",
+   "ZONE",
+   "ST_NM"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-m-fab2",
+  "name": "ST-MJ-M_FAB2",
+  "description": "ST-MJ-M_FAB2",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "M_FAB2"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-pattern",
+  "name": "ST-MJ-PATTERN",
+  "description": "ST-MJ-PATTERN",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "DIV",
+   "SUB_DIV",
+   "SEG",
+   "M_PATTERN"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-rng-seg",
+  "name": "ST-MJ-RNG-SEG",
+  "description": "ST-MJ-RNG-SEG",
+  "group_by": [
+   "ST_CD",
+   "REG_SEG",
+   "MAJ_CAT",
+   "DIV",
+   "SUB_DIV",
+   "SEG"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-sz",
+  "name": "ST-MJ-SZ",
+  "description": "ST-MJ-SZ",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "ST_NM",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "NEW_SIZE_DESC",
+   "ZONE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS",
+   "DATA_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH",
+   "RANGE"
+  ]
+ },
+ {
+  "slug": "st-mj-vertical",
+  "name": "ST-MJ-VERTICAL",
+  "description": "ST-MJ-VERTICAL",
+  "group_by": [
+   "ST_CD"
+  ],
+  "measures": [],
+  "windows": []
+ },
+ {
+  "slug": "st-mj-weave-01",
+  "name": "ST-MJ-WEAVE_01",
+  "description": "ST-MJ-WEAVE_01",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "M_WEAVE_01",
+   "ST_NM",
+   "ZONE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-mj-weave-02",
+  "name": "ST-MJ-WEAVE_02",
+  "description": "ST-MJ-WEAVE_02",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "M_WEAVE_02",
+   "ST_NM"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-rxl-sale",
+  "name": "ST-RXL-SALE",
+  "description": "ST-RXL-SALE",
+  "group_by": [
+   "ST_CD"
+  ],
+  "measures": [
+   "SALE_V",
+   "GM_V"
+  ],
+  "windows": [
+   "TD"
+  ]
+ },
+ {
+  "slug": "st-var-art-mkt",
+  "name": "ST-VAR-ART-MKT",
+  "description": "ST-VAR-ART-MKT",
+  "group_by": [
+   "ST_CD",
+   "ARTICLE_NUMBER",
+   "MAJ_CAT",
+   "ARTICLE_DESC",
+   "GEN_ART_NUMBER",
+   "GEN_ART_DESC",
+   "SEG",
+   "ST_NM",
+   "REG",
+   "DIV",
+   "SUB_DIV",
+   "MRP",
+   "REG_SEG",
+   "MERGE_VENDOR_CODE",
+   "MERGE_VENDOR_NAME",
+   "M_FAB_MAIN_MVGR_1",
+   "M_FAB_MAIN_MVGR_2",
+   "M_WEAVE_01",
+   "M_WEAVE_02",
+   "NEW_COLOR_CODE",
+   "NEW_SIZE_DESC",
+   "ZONE"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V",
+   "SAL_DAYS",
+   "GM_DAYS"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ },
+ {
+  "slug": "st-var-art-nt",
+  "name": "ST-VAR-ART-NT",
+  "description": "ST-VAR-ART-NT",
+  "group_by": [
+   "ST_CD",
+   "ARTICLE_NUMBER",
+   "MAJ_CAT",
+   "SEG",
+   "ST_NM",
+   "REG",
+   "DIV",
+   "SUB_DIV",
+   "NEW_COLOR_CODE",
+   "NEW_SIZE_DESC",
+   "VENDOR_CODE",
+   "VENDOR_NAME",
+   "MC_CODE",
+   "MC_DESC",
+   "MRP"
+  ],
+  "measures": [],
+  "windows": []
+ },
+ {
+  "slug": "sale-plan-check",
+  "name": "Sale Plan Check",
+  "description": "ST x MAJ_CAT actual vs Day Wise Plan WITH_STR finals",
+  "group_by": [
+   "ST_CD",
+   "MAJ_CAT"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q"
+  ],
+  "windows": [
+   "TD",
+   "MTD"
+  ]
+ },
+ {
+  "slug": "store-allocation-report",
+  "name": "Store_Allocation_Report",
+  "description": "Store_Allocation_Report",
+  "group_by": [
+   "ST_CD",
+   "ARTICLE_NUMBER"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "LAST_7DAYS",
+   "LAST_4WEEK"
+  ]
+ },
+ {
+  "slug": "store-wise-var-article",
+  "name": "store_wise_var_article",
+  "description": "store_wise_var_article",
+  "group_by": [
+   "ST_CD",
+   "ST_NM",
+   "SEG",
+   "DIV",
+   "SUB_DIV",
+   "MAJ_CAT",
+   "MC_CODE",
+   "MC_DESC",
+   "GEN_ART_NUMBER",
+   "GEN_ART_DESC",
+   "ARTICLE_NUMBER",
+   "MRP",
+   "REG_SEG",
+   "NEW_SIZE_DESC",
+   "NEW_COLOR_CODE",
+   "M_FIT",
+   "M_FAB_MAIN_MVGR_1",
+   "M_FAB_MAIN_MVGR_2",
+   "M_WEAVE_01",
+   "M_WEAVE_02"
+  ],
+  "measures": [
+   "SALE_V",
+   "SALE_Q",
+   "GM_V",
+   "DISCOUNT_V",
+   "AVG_SALE_V",
+   "AVG_SALE_Q",
+   "AVG_GM_V"
+  ],
+  "windows": [
+   "TD",
+   "MTD",
+   "QTR",
+   "LAST_7DAYS",
+   "LAST_4WEEK",
+   "YTD",
+   "LAST_6MONTH",
+   "LYSP_SSN",
+   "LYSP_MONTH"
+  ]
+ }
+]

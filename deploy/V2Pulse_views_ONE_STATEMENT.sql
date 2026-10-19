@@ -1,0 +1,833 @@
+-- V2Pulse: all curated views (63) in ONE statement. Paste into a Snowsight SQL worksheet as ACCOUNTADMIN
+-- and press Run once. Safe to re-run. The result reads: V2Pulse views created: 63
+EXECUTE IMMEDIATE $$
+BEGIN
+create or replace view V2RETAIL.PULSE.V_MST_STORE
+  comment = 'V2Pulse master: Store master'
+as select
+  STORE_CODE,
+  STORE_NAME,
+  STORE_FULL_NAME,
+  STATE,
+  ZONE,
+  REGION,
+  AREA,
+  STORE_TYPE,
+  STORE_FIXTURE,
+  STATUS,
+  IS_ACTIVE,
+  IS_NEW_STORE,
+  IS_UPCOMING,
+  IS_CLOSED,
+  OPEN_DATE,
+  CLOSE_DATE,
+  FLOOR_AREA_SQFT,
+  ST_AREA_LABEL,
+  FLOORS,
+  AREA_PER_FIXTURE,
+  AVG_PSF,
+  IN_TRANSIT_DAYS,
+  OLD_NEW_FLAG,
+  FESTIVAL_STATUS,
+  RDC_CD,
+  RDC_NAME,
+  HUB_CD,
+  HUB_NAME,
+  REF_STORE_CODE,
+  REF_STORE_NAME,
+  REF_GROUP_NEW,
+  REF_GROUP_OLD,
+  SALE_GROUP,
+  BUILT_AT
+from V2RETAIL.GOLD.DIM_STORE_V2;
+create or replace view V2RETAIL.PULSE.V_MST_STORE_LOCATION
+  comment = 'V2Pulse master: Store geo-location'
+as select
+  STORE_CODE,
+  CITY,
+  PIN_CODE,
+  LATITUDE,
+  LONGITUDE,
+  UPDATED_AT
+from V2RETAIL.RETAIL_HUB.STORE_LOCATION_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_STORAGE_LOCATION
+  comment = 'V2Pulse master: Storage locations (SLOC)'
+as select
+  STORE_CODE,
+  STORAGE_LOC_CODE,
+  STORAGE_LOC_NAME,
+  DIVISION,
+  EXTRACTED_AT
+from V2RETAIL.SILVER.DIM_STORAGE_LOCATION;
+create or replace view V2RETAIL.PULSE.V_MST_RDC
+  comment = 'V2Pulse master: RDC master'
+as select
+  RDC_CD,
+  RDC_NAME,
+  RDC_CITY,
+  REGION_BLOCK,
+  TOTAL_STORES_IN_RDC,
+  ACTIVE_STORES_IN_RDC,
+  BUILT_AT
+from V2RETAIL.GOLD.DIM_RDC;
+create or replace view V2RETAIL.PULSE.V_MST_ARTICLE
+  comment = 'V2Pulse master: Article master'
+as select
+  VAR_ARTICLE,
+  ARTICLE_DESC,
+  GEN_ART_NUMBER,
+  GEN_ART_DESC,
+  MTART,
+  MEINS,
+  COLOR,
+  SIZE_1,
+  MC_CODE,
+  MC_DESC,
+  SEG,
+  DIV,
+  SUB_DIV,
+  MAJ_CAT,
+  SSN,
+  MRP,
+  RNG_SEG,
+  VENDOR_CODE,
+  VENDOR_NAME,
+  VENDOR_DESIGN_NO,
+  PAK_SZ,
+  ARTICLE_STATUS,
+  IS_ACTIVE,
+  MSTAE_BLOCKED,
+  CREATE_DATE,
+  MODIFY_DATE
+from V2RETAIL.GOLD.V_VAR_ARTICLE_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_MERCH_HIERARCHY
+  comment = 'V2Pulse master: Merchandise hierarchy'
+as select
+  MATKL as MC_CODE,
+  WGBEZ as MC_DESC,
+  MAJ_CATEGORY_CODE,
+  MAJ_CATEGORY,
+  SUB_DIVISION_CODE,
+  SUB_DIVISION,
+  DIVISION_CODE,
+  DIVISION,
+  SEGMENT_CODE,
+  SEGMENT
+from V2RETAIL.SILVER.DIM_MERCH_HIERARCHY_CURRENT;
+create or replace view V2RETAIL.PULSE.V_MST_MC
+  comment = 'V2Pulse master: MC master (ZMC)'
+as select
+  MATKL as MC_CODE,
+  MC_DESC,
+  MC_DESC2,
+  MTART as ARTICLE_TYPE,
+  SEG_CD,
+  SEG,
+  DIV_CD,
+  DIVISION,
+  SUB_DIV_CD,
+  SUB_DIVISION,
+  MAJ_CAT_CD,
+  MAJ_CAT,
+  MAJ_CAT_STAT,
+  SUB_CAT_CD,
+  SUB_CAT_DESC,
+  SEASON,
+  STEUC as HSN_CODE,
+  SAP_GL_CODE,
+  ZPICK_STAT as PICK_STATUS,
+  EXTRACT_DATE
+from V2RETAIL.GOLD.ZMC_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_MAJOR_CATEGORY
+  comment = 'V2Pulse master: Major category & season'
+as select
+  MAJOR_CATEGORY,
+  SUB_DIVISION,
+  DIVISION,
+  SEGMENT,
+  SEASON_CODE,
+  SEASON_NAME,
+  BUILT_AT
+from V2RETAIL.GOLD.DIM_PRODUCT_HIERARCHY;
+create or replace view V2RETAIL.PULSE.V_MST_SEASON
+  comment = 'V2Pulse master: Season master'
+as select
+  SEASON_CODE,
+  SEASON_NAME,
+  MAJCAT_COUNT,
+  BUILT_AT
+from V2RETAIL.GOLD.DIM_SEASON;
+create or replace view V2RETAIL.PULSE.V_MST_COLOUR
+  comment = 'V2Pulse master: Colour master'
+as select
+  CHILD_COLOR,
+  CHILD_COL_SHORT_NAME,
+  FATHER_COLOR,
+  FATHER_COLOR_SHORT_FORM,
+  GRNAD_FATHER as GRANDFATHER_COLOR,
+  HEX_CODE,
+  SUGGESTED_TCX,
+  SHADE,
+  SOURCE_LOADED_AT
+from V2RETAIL.SILVER.VW_SRM_COLOUR_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_VENDOR
+  comment = 'V2Pulse master: Vendor master'
+as select
+  VENDOR_CODE,
+  VENDOR_NAME,
+  COMPANY_NAME,
+  VENDOR_CITY,
+  VENDOR_STATE,
+  VENDOR_REGION,
+  VENDOR_COUNTRY,
+  VENDOR_PINCODE,
+  ACCOUNT_GROUP_DESC,
+  GSTIN,
+  PAYMENT_TERMS,
+  VENDOR_CREATED_ON,
+  IS_MERGED,
+  MERGE_VENDOR_CODE,
+  MERGE_VENDOR_NAME,
+  PURCHASING_BLOCK,
+  POSTING_BLOCK,
+  cast(DELETION_FLAG as varchar) as DELETION_FLAG
+from V2RETAIL.SILVER.VENDOR_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_MVGR_FAMILY
+  comment = 'V2Pulse master: MVGR attribute families'
+as select
+  MAJ_CAT_CODE,
+  MAJ_CAT_NAME,
+  DIV_CODE,
+  CANON_MAJ_CAT_CODE,
+  CANON_DIV_CODE,
+  ROW_COUNT as VALUE_COUNT,
+  MERCH_REVIEW_FLAG,
+  RENAME_REASON,
+  LOAD_TS
+from V2RETAIL.GOLD.DIM_MVGR_FAMILY;
+create or replace view V2RETAIL.PULSE.V_MST_MVGR_VALUE
+  comment = 'V2Pulse master: MVGR attribute values'
+as select
+  MVGR_KEY,
+  MAJ_CAT_CODE,
+  DIV_CODE,
+  GRID_ID,
+  FG_CODE,
+  MVGR_VALUE,
+  FULL_FORM,
+  SHORT_CODE,
+  LABEL_EN,
+  LABEL_HI,
+  STATUS,
+  LIFECYCLE,
+  EFFECTIVE_FROM,
+  EFFECTIVE_TO,
+  VERSION_NO,
+  UNIT,
+  MIN_VAL,
+  MAX_VAL,
+  FIBER_1,
+  PCT_1,
+  FIBER_2,
+  PCT_2,
+  FIBER_3,
+  PCT_3,
+  COMPOSITION_FINISH,
+  APPROVED_BY,
+  APPROVED_AT,
+  LOAD_TS
+from V2RETAIL.GOLD.DIM_MVGR_VALUE;
+create or replace view V2RETAIL.PULSE.V_MST_MRP_BAND
+  comment = 'V2Pulse master: Segment MRP bands'
+as select
+  MAJ_CATEGORY,
+  SEG,
+  DIV,
+  SUB_DIV,
+  SSN,
+  BAND,
+  BAND_SEQ,
+  MIN_VAL,
+  MAX_VAL,
+  IS_OPEN_MAX,
+  LOADED_AT,
+  LOADED_BY
+from V2RETAIL.MERCH_MASTER.SEG_MRP_BAND_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_FABRIC_BASE_ARTICLE
+  comment = 'V2Pulse master: Fabric base articles'
+as select
+  BASE_FABRIC_ARTICLE_NO,
+  BASE_FABRIC_ARTICLE_DESC,
+  DIV,
+  YARN,
+  FABRIC_MAJ_CAT,
+  MC_CD,
+  MC_DESC,
+  BASE_FABRIC_REF_ARTICLE,
+  BASE_FABRIC_REF_ARTICLE_DESC,
+  FAB_MAIN_MVGR_2,
+  LOADED_AT,
+  LOADED_BY
+from V2RETAIL.MERCH_MASTER.FABRIC_BASE_ARTICLE_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_BIN_CAPACITY
+  comment = 'V2Pulse master: Bin capacity'
+as select
+  MAJ_CAT,
+  BIN_CAP,
+  BIN_CAP_DC_TEAM
+from V2RETAIL.GOLD.MASTER_BIN_CAPACITY;
+create or replace view V2RETAIL.PULSE.V_MST_PICKER
+  comment = 'V2Pulse master: Picker master'
+as select
+  PICKER_ID,
+  PICKER_NM as PICKER_NAME,
+  DC,
+  EMP_CODE,
+  IS_HUMAN,
+  FIRST_SEEN_ON,
+  LAST_SEEN_ON,
+  UPDATED_AT
+from V2RETAIL.MIS_REPORTS.WM_PICKER_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_PTL_ZONE
+  comment = 'V2Pulse master: PTL zones'
+as select
+  ZONE_CD,
+  ZONE_NO,
+  ZONE_NM as ZONE_NAME,
+  STORAGE_TYPE,
+  BIN_PATTERN,
+  IS_MSA,
+  REMARK,
+  UPDATED_AT
+from V2RETAIL.MIS_REPORTS.WM_PTL_ZONE_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_ALLOC_SLOC
+  comment = 'V2Pulse master: Allocation SLOC mapping'
+as select
+  ST_CD as STORE_CODE,
+  ALLOCATION_PURPOSE,
+  SLOC_RAW,
+  SLOC_DESC_ALLOC as SLOC_DESC,
+  SLOC_NORM
+from V2RETAIL.SILVER.ALLOC_SLOC_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_TRANSIT_DAYS
+  comment = 'V2Pulse master: Store transit days'
+as select
+  ST_CD as STORE_CODE,
+  ST_NM as STORE_NAME,
+  ST_FULL_NM as STORE_FULL_NAME,
+  ST_TYP as STORE_TYPE,
+  IN_TR_DAYS as IN_TRANSIT_DAYS,
+  EXCESS_DAYS,
+  ST_STAT as STORE_STATUS,
+  STATE,
+  UPDATED_AT
+from V2RETAIL.MIS_REPORTS.INTRANSIT_PLANT_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_STORE_ASSIGNMENT
+  comment = 'V2Pulse master: Store reporting lines'
+as select
+  STORE_CODE,
+  ZM_USER_ID,
+  RM_USER_ID,
+  CM_USER_ID,
+  UPDATED_AT,
+  UPDATED_BY
+from V2RETAIL.RETAIL_HUB.STORE_ASSIGNMENT_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_SOMPS_PROCESS
+  comment = 'V2Pulse master: SOMPS processes'
+as select
+  NAME as PROCESS_NAME,
+  SUB_PROCESS,
+  CATEGORY,
+  BENCHMARK_UNIT,
+  EFFECTIVE_DATE,
+  ACTIVE,
+  UPDATED_AT,
+  UPDATED_BY
+from V2RETAIL.RETAIL_HUB.SOMPS_PROCESS_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_SOMPS_BENCHMARK
+  comment = 'V2Pulse master: SOMPS benchmarks'
+as select
+  p.NAME as PROCESS_NAME,
+  p.SUB_PROCESS as SUB_PROCESS,
+  b.VALUE as VALUE,
+  b.UNIT as UNIT,
+  b.EFFECTIVE_DATE as EFFECTIVE_DATE,
+  b.NOTES as NOTES,
+  b.UPDATED_AT as UPDATED_AT
+from V2RETAIL.RETAIL_HUB.SOMPS_BENCHMARK_MASTER b left join V2RETAIL.RETAIL_HUB.SOMPS_PROCESS_MASTER p on p.ID = b.PROCESS_ID;
+create or replace view V2RETAIL.PULSE.V_MST_FA_SET
+  comment = 'V2Pulse master: FA sets'
+as select
+  FA_SET,
+  STATE,
+  SR_NO
+from V2RETAIL.NSO_MARKETING.FA_SET_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_FA_TRACKER
+  comment = 'V2Pulse master: FA tracker'
+as select
+  STORE_CODE,
+  STORE_NAME,
+  STATE,
+  OPENING_DATE,
+  STORE_STATUS,
+  FA_STATUS,
+  FA_SET,
+  FROM_SITE,
+  CURRENT_SITE,
+  RECEIVED_DATE,
+  START_DATE,
+  END_DATE,
+  AT_STORE_DAYS,
+  AGEING_DAYS,
+  VENDOR_COST,
+  NET_LOSS,
+  NET_SAVING,
+  ACTION,
+  ROUTED_STATUS,
+  UPDATED_AT
+from V2RETAIL.NSO_MARKETING.FA_MASTER_TRACKER;
+create or replace view V2RETAIL.PULSE.V_MST_SRM_VENDOR
+  comment = 'V2Pulse master: SRM vendors'
+as select
+  VENDOR_CODE,
+  VENDOR_NAME,
+  COMPANY_NAME,
+  VENDOR_CITY,
+  VENDOR_REGION,
+  IS_MERGED,
+  MERGE_VENDOR_CODE,
+  MERGE_VENDOR_NAME,
+  MERGE_VENDOR_CITY,
+  SOURCE_LOADED_AT_UTC
+from V2RETAIL.SILVER.VW_SRM_VENDOR_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_SRM_ARTICLE
+  comment = 'V2Pulse master: SRM articles'
+as select
+  GEN_ART as GENERIC_ARTICLE,
+  COLOR,
+  VENDOR_CODE,
+  VENDOR_NAME,
+  DIVISION,
+  SUBDIVISION as SUB_DIVISION,
+  MAJOR_CATEGORY,
+  BRAND,
+  MRP,
+  UNIT,
+  RNG_SEG as RANGE_SEGMENT,
+  NOA
+from V2RETAIL.GOLD.SRM_ARTICLE_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_SAP_RFC
+  comment = 'V2Pulse master: SAP RFC interfaces'
+as select
+  RFC_CODE,
+  DISPLAY_NAME,
+  RFC_FUNCTION_NAME,
+  DESCRIPTION,
+  DEPARTMENT,
+  SUB_DEPARTMENT,
+  SAP_MODULE,
+  SOURCE_SYSTEM,
+  TARGET_SYSTEM,
+  TARGET_SCHEMA,
+  TARGET_TABLE,
+  EXECUTION_TYPE,
+  SCHEDULE_DESC,
+  STATUS,
+  OWNER,
+  LOAD_MODE,
+  WRITE_MODE,
+  UPDATED_DT
+from V2RETAIL.GOLD.RFC_MASTER
+where coalesce(IS_DELETED, false) = false;
+create or replace view V2RETAIL.PULSE.V_MST_CALENDAR
+  comment = 'V2Pulse master: Calendar'
+as select
+  DATE,
+  DAY,
+  DAY_NO,
+  WEEK,
+  MONTH,
+  MONTH_NAME,
+  QUARTER,
+  YEAR,
+  FY_YEAR,
+  FY_QUARTER,
+  FY_WEEK,
+  CUSTOM_WEEK_NO,
+  CUSTOM_WEEK_NAME,
+  SEASON,
+  SSN_CODE,
+  IS_WEEKEND,
+  IS_HOLIDAY,
+  HOLIDAY_NAME
+from V2RETAIL.BRONZE.DIM_CALENDAR;
+create or replace view V2RETAIL.PULSE.V_MST_FESTIVAL_CALENDAR
+  comment = 'V2Pulse master: Festival calendar'
+as select
+  DT,
+  FESTIVAL_NAME,
+  FEST_DATE,
+  FEST_PHASE,
+  DAYS_TO_FEST,
+  IN_FESTIVAL_WINDOW,
+  DOW_NAME,
+  IS_WEEKEND,
+  YEAR,
+  MONTH,
+  REFRESHED_AT
+from V2RETAIL.GOLD.DIM_FESTIVAL_CALENDAR;
+create or replace view V2RETAIL.PULSE.V_MST_WEEK_CALENDAR
+  comment = 'V2Pulse master: Retail week calendar'
+as select
+  YEAR_WEEK,
+  WEEK_SEQ,
+  FY_YEAR,
+  FY_WEEK,
+  CAL_YEAR,
+  WK_ST_DT,
+  WK_END_DT,
+  WEEK_ID
+from V2RETAIL.GOLD.WEEK_CALENDAR;
+create or replace view V2RETAIL.PULSE.V_MST_SAP_PLANT
+  comment = 'V2Pulse master: SAP plants'
+as select
+  WERKS as PLANT,
+  NAME1 as PLANT_NAME,
+  NAME2 as NAME_2,
+  ORT01 as CITY,
+  PSTLZ as PIN_CODE,
+  REGIO as STATE_CODE,
+  LAND1 as COUNTRY,
+  VKORG as SALES_ORG,
+  EKORG as PURCHASING_ORG,
+  BWKEY as VALUATION_AREA,
+  KUNNR as CUSTOMER_NO,
+  LIFNR as VENDOR_NO
+from V2RETAIL.GOLD.ET_PLANT;
+create or replace view V2RETAIL.PULSE.V_MST_STATE
+  comment = 'V2Pulse master: States (SAP)'
+as select
+  LAND1 as COUNTRY,
+  BLAND as STATE_CODE,
+  BEZEI as STATE_NAME
+from V2RETAIL.BRONZE.ET_STATE_MASTER
+where SPRAS = 'E';
+create or replace view V2RETAIL.PULSE.V_MST_COUNTRY
+  comment = 'V2Pulse master: Countries (SAP)'
+as select
+  LAND1 as COUNTRY_CODE,
+  LANDX50 as COUNTRY_NAME,
+  NATIO50 as NATIONALITY
+from V2RETAIL.BRONZE.ET_COUNTRY_MASTER
+where SPRAS = 'E';
+create or replace view V2RETAIL.PULSE.V_MST_DESIGNATION
+  comment = 'V2Pulse master: Designations'
+as select
+  "DesignationName" as DESIGNATION_NAME,
+  "DesignationCode" as DESIGNATION_CODE,
+  "isActive" as IS_ACTIVE,
+  "DesignationId" as DESIGNATION_ID,
+  "UpdatedOn" as UPDATED_ON
+from V2RETAIL.BRONZE.HRMS_DESIGNATION_MASTER
+where coalesce("isDeleted", false) = false;
+create or replace view V2RETAIL.PULSE.V_MST_HR_SHIFT
+  comment = 'V2Pulse master: HR shifts'
+as select
+  "ShiftName" as SHIFT_NAME,
+  to_varchar("StartTime", 'HH24:MI') as START_TIME,
+  to_varchar("EndTime", 'HH24:MI') as END_TIME,
+  "IsActive" as IS_ACTIVE,
+  "EffectiveFrom" as EFFECTIVE_FROM,
+  "EffectiveTo" as EFFECTIVE_TO,
+  "ShiftID" as SHIFT_ID
+from V2RETAIL.BRONZE.HRMS_SHIFT_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_HR_ROLE
+  comment = 'V2Pulse master: HRMS roles'
+as select
+  "RoleName" as ROLE_NAME,
+  "Description" as DESCRIPTION,
+  "Priority" as PRIORITY,
+  "IsActive" as IS_ACTIVE,
+  "RoleId" as ROLE_ID
+from V2RETAIL.BRONZE.HRMS_ROLE_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_HR_BUDGET_SEATS
+  comment = 'V2Pulse master: Budgeted seats'
+as select
+  LOC_CODE,
+  SEAT_MASTER_NO,
+  DEPARTMENT,
+  "SubDepartment1" as SUB_DEPARTMENT_1,
+  "SubDepartment2" as SUB_DEPARTMENT_2,
+  DESIGNATION,
+  REPORTING_MANAGER,
+  ORG_CHART,
+  ACTIVE
+from V2RETAIL.BRONZE.HRMS_BGTSEATS_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_SIZE
+  comment = 'V2Pulse master: Sizes by MC'
+as select
+  MATKL as MC_CODE,
+  SIZE1 as SIZE,
+  MEASUREMENT,
+  UNIT,
+  MC_DESC,
+  SEG,
+  DIVISION,
+  SUB_DIVISION,
+  MAJ_CAT
+from V2RETAIL.BRONZE.ET_ZMC_SIZE_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_SIZE_CODE
+  comment = 'V2Pulse master: Size codes'
+as select
+  SIZE_NAME,
+  SIZE_DESC
+from V2RETAIL.BRONZE.ET_ZMM_SIZE_MAPPING;
+create or replace view V2RETAIL.PULSE.V_MST_GRID
+  comment = 'V2Pulse master: Grid master (ZGRID)'
+as select
+  MAJ_CAT,
+  GRID_SN,
+  MAJ_CAT_CD,
+  GR_FAT_GRID,
+  FAT_GRID,
+  FAT_GRID_SN,
+  CHILD_GRID,
+  CHILD_GRID_SN,
+  GRID_ATT,
+  ACT_ALLOC,
+  EXTRACT_DATE
+from V2RETAIL.BRONZE.ZGRID_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_KUDDI
+  comment = 'V2Pulse master: Colour groups (Kuddi)'
+as select
+  GEN_CLR_KEY,
+  KUDDI
+from V2RETAIL.GOLD.DIM_KUDDI;
+create or replace view V2RETAIL.PULSE.V_MST_FG_SUPERCAT
+  comment = 'V2Pulse master: FG super-categories'
+as select
+  FG_CODE,
+  SUPERCAT,
+  GENDER,
+  GENDER_GROUP,
+  AGE_GROUP,
+  FABRIC_CLASS,
+  FABRIC_GROUP,
+  BODY_TYPE,
+  BODY_GROUP,
+  AUTO_ASSIGNED,
+  RULE_VERSION
+from V2RETAIL.GOLD.DIM_FG_SUPERCAT;
+create or replace view V2RETAIL.PULSE.V_MST_MVGR_SYNONYM
+  comment = 'V2Pulse master: MVGR synonyms'
+as select
+  ALIAS,
+  MVGR_KEY,
+  ALIAS_TYPE,
+  SOURCE,
+  CREATED_AT,
+  SYN_ID
+from V2RETAIL.GOLD.DIM_MVGR_SYNONYM;
+create or replace view V2RETAIL.PULSE.V_MST_MAJCAT_CLUBBED_DIV
+  comment = 'V2Pulse master: Major category → clubbed division'
+as select
+  MAJ_CAT,
+  CLUBBED_DIV
+from V2RETAIL.BRONZE.MAJ_CAT_CLUBBED_DIV_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_MAJCAT_FIX_MINMAX
+  comment = 'V2Pulse master: Major category fixture min / max'
+as select
+  MAJ_CAT,
+  MIN_FIX,
+  MAX_FIX
+from V2RETAIL.BRONZE.MAJ_CAT_MIN_MAX_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_PLANOGRAM
+  comment = 'V2Pulse master: Planogram master'
+as select
+  MJ,
+  SEG,
+  DIV,
+  SUB_DIV,
+  COMBINATION,
+  SSN,
+  MJ_STAT,
+  DISP_TYPE,
+  HANGING_TYPE_UPPER_LAYER,
+  HANGING_TYPE_LOWER_LAYER,
+  DPN,
+  STATUS
+from V2RETAIL.BRONZE.BUDGET_PLANOGRAM_PLANOGRAM_MASTER_NEW;
+create or replace view V2RETAIL.PULSE.V_MST_STORE_DIV_FIXTURE
+  comment = 'V2Pulse master: Store × division fixtures'
+as select
+  ST_CD as STORE_CODE,
+  REV_DIV as DIVISION,
+  FLR as FLOOR,
+  ST_DIV_FIX as FIXTURES
+from V2RETAIL.BRONZE.ST_DIV_FIX_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_REF_STORE
+  comment = 'V2Pulse master: Reference store mapping'
+as select
+  STORE_CODE,
+  STORE_NAME,
+  STATUS,
+  STATE,
+  ZONE,
+  REGION,
+  RDC,
+  STORE_AREA,
+  REF_STORE_CODE,
+  REF_STORE_NAME,
+  REF_GROUP,
+  IS_NEW_STORE,
+  HAS_GENCOLOR_SALES,
+  DIWALI,
+  D_PUJA,
+  CHHAT,
+  EID,
+  HOLI,
+  PONGAL,
+  BIHU,
+  UGADI
+from V2RETAIL.PLANNING.REF_STORE_MAPPING;
+create or replace view V2RETAIL.PULSE.V_MST_STORE_ROI_CLUSTER
+  comment = 'V2Pulse master: Store ROI clusters'
+as select
+  STORE_CODE,
+  CLUSTER_CODE,
+  CLIMATE,
+  SIZE_BAND,
+  WINTER_PCT,
+  AREA_SQFT,
+  BASIS_FROM,
+  BASIS_TO,
+  VERSION,
+  ASSIGNED_AT
+from V2RETAIL.GOLD.STORE_ROI_CLUSTER_MAP;
+create or replace view V2RETAIL.PULSE.V_MST_GL_ACCOUNT
+  comment = 'V2Pulse master: GL accounts'
+as select
+  GL_ACCOUNT,
+  CHART_OF_ACCOUNTS,
+  ACCOUNT_GROUP,
+  IS_BALANCE_SHEET,
+  GROUP_ACCOUNT_NUMBER,
+  GL_ACCOUNT_KEY
+from V2RETAIL.GOLD.DIM_GL_ACCOUNT;
+create or replace view V2RETAIL.PULSE.V_MST_PNL_GL_MAP
+  comment = 'V2Pulse master: P&L GL mapping'
+as select
+  GL_ACCOUNT,
+  GL_NAME,
+  PNL_GROUP,
+  GROUP_GL,
+  NATURE,
+  GL_STATUS,
+  CRT,
+  GL_OWNER_1,
+  GL_OWNER_2
+from V2RETAIL.BRONZE.PNL_GL_MAP;
+create or replace view V2RETAIL.PULSE.V_MST_PNL_LOC_MAP
+  comment = 'V2Pulse master: P&L location mapping'
+as select
+  LOC_CD,
+  LOC_NAME,
+  ST_TYP,
+  LISTING,
+  AREA_SQFT
+from V2RETAIL.BRONZE.PNL_LOC_MAP;
+create or replace view V2RETAIL.PULSE.V_MST_PAYMENT_TERMS
+  comment = 'V2Pulse master: Payment terms'
+as select
+  ZTERM as PAYMENT_TERM,
+  NET_DAYS,
+  IS_CONFIRMED
+from V2RETAIL.CRM_BRONZE.PAYMENT_TERMS_MASTER;
+create or replace view V2RETAIL.PULSE.V_MST_CREDITOR_CLASS
+  comment = 'V2Pulse master: Creditor classes'
+as select
+  BUSINESS_AREA,
+  NATURE,
+  DIV,
+  SUB_DIV
+from V2RETAIL.GOLD.CREDITOR_CLASS_MAP;
+create or replace view V2RETAIL.PULSE.V_MST_ASSET_CLASS
+  comment = 'V2Pulse master: Fixed-asset classes'
+as select
+  MATNR_10 as MATERIAL,
+  ANLKL as ASSET_CLASS,
+  ANLKL_DESC as ASSET_CLASS_DESC,
+  ULC_YEARS as USEFUL_LIFE_YEARS,
+  SOURCE
+from V2RETAIL.GOLD.FAR_ASSET_MAP;
+create or replace view V2RETAIL.PULSE.V_MST_MOP
+  comment = 'V2Pulse master: Payment modes (MOP)'
+as select
+  TENDER_TYPE,
+  MOP_CODE,
+  MOP_NAME,
+  SAP_GL,
+  SAP_BLART,
+  IS_ACTIVE,
+  NOTES
+from V2RETAIL.CRM_SILVER.MOP_MAP;
+create or replace view V2RETAIL.PULSE.V_MST_NSO_BRANDING
+  comment = 'V2Pulse master: NSO branding sites'
+as select
+  ST_CD as STORE_CODE,
+  STORE_NAME,
+  STATE,
+  MONTH,
+  OVERALL_STATUS,
+  PLANNING_STATUS,
+  FRONT_ELEV_STATUS,
+  EXT_STATUS,
+  INT_STATUS,
+  RACEE_STATUS,
+  VENDOR_NAME,
+  PO_NUMBER,
+  PO_STATUS,
+  PROJECT_MANAGER,
+  PROJECT_LEAD,
+  SUPERVISOR,
+  EXT_BGT_DATE,
+  EXT_ACT_DATE,
+  INT_BGT_DATE,
+  INT_ACT_DATE,
+  UPDATED_AT
+from V2RETAIL.NSO_MARKETING.NSO_BRANDING_SITES;
+create or replace view V2RETAIL.PULSE.V_MST_NEW_STORE_PLAN
+  comment = 'V2Pulse master: New store plan FY27'
+as select
+  STORE_CODE,
+  STORE_NAME,
+  STATE_NORM as STATE,
+  OPEN_DATE_PLANNED,
+  FLOOR_AREA_SQFT_PLANNED,
+  SIZE_TIER,
+  VINTAGE_BUCKET
+from V2RETAIL.FORECAST.DIM_NEW_STORE_PLAN_FY27;
+create or replace view V2RETAIL.PULSE.V_MST_DC_STORAGE
+  comment = 'V2Pulse master: DC storage types'
+as select
+  WERKS as PLANT,
+  LGNUM as WAREHOUSE_NO,
+  LGTYP as STORAGE_TYPE,
+  BLGTYP as BULK_STORAGE_TYPE,
+  NLTYP as PUTAWAY_STORAGE_TYPE,
+  GLGTYP as GR_STORAGE_TYPE,
+  LGORT as SLOC
+from V2RETAIL.BRONZE.ZWM_DC_MASTER;
+create or replace view V2RETAIL.PULSE.V_BI_SALES_BUDGET
+  comment = 'V2Pulse dataset: Sales vs budget'
+as select s.ANCHOR_DT, s.ST_CD, s.ST_NM, s.ST_STATUS, h.ZONE_CODE, h.REGION_CODE, h.CLUSTER_CODE, s.SEG, s.DIV, s.FLR, s.SUB_DIV, s.MAJ_CAT, s.SSN, s.SALE_TD, s.SALE_MTD, s.MTH_TGT, s.BGT_CURRENT_MONTH, s.BGT_UPCOMING_MONTH, s.BGT_AVG_L7D, s.BGT_AVG_L4WK, s.SALE_L7D, s.SALE_L4WK, s.AVG_SALE_L7D, s.AVG_SALE_L4WK, s.AVG_SALE_SSN, s.AVG_SALE_L7D_LYSP, s.AVG_SALE_L4WK_LYSP, s.AVG_SALE_LYSP_SSN, s.BUILT_AT from V2RETAIL.GOLD.ST_MJ_SALE s left join V2RETAIL.PULSE.V_STORE_HIERARCHY h on h.STORE_CODE = s.ST_CD;
+create or replace view V2RETAIL.PULSE.V_BI_DFS_SALE
+  comment = 'V2Pulse dataset: DFS sale & stock (store x article)'
+as select f.DT, f.ST_CD, s.STORE_NAME as ST_NM, s.ZONE, s.REGION, s.RDC_CD, s.RDC_NAME as RDC_NM, f.SEG, a.DIV, a.SUB_DIV, f.MAJ_CAT, a.MC_CODE, a.MC_DESC, f.GEN_ART_NUMBER, f.GEN_ART_DESC, f.ARTICLE_NUMBER, a.ARTICLE_DESC, f.COLOR, f.SIZE_1, a.MRP, a.RNG_SEG as REG_SEG, a.VENDOR_CODE, a.VENDOR_NAME, a.MERGE_VENDOR_CODE, a.MERGE_VENDOR_NAME, a.M_FIT, a.M_FAB_MAIN_MVGR_1, a.M_FAB_MAIN_MVGR_2, a.M_WEAVE_01, a.M_WEAVE_02, a.M_FAB2, a.M_PATTERN, f.SALE_V, f.SALE_Q, f.GM_V, f.DISCOUNT_V from V2RETAIL.BRONZE.DAY_WISE_ST_VAR_SALE f left join V2RETAIL.GOLD.DIM_STORE_V2 s on s.STORE_CODE = f.ST_CD left join V2RETAIL.GOLD.V_VAR_ARTICLE_MASTER a on a.VAR_ARTICLE = f.ARTICLE_NUMBER;
+create or replace view V2RETAIL.PULSE.V_BI_RXL_REPORT
+  comment = 'V2Pulse dataset: RXL report'
+as select s.SNAPSHOT_DATE, s.PERIOD_TYPE, s.IS_FINAL, s.STORE_CODE, s.STORE_NAME, coalesce(h.STATE, s.STATE) as STATE, h.ZONE_CODE, h.REGION_CODE, h.CLUSTER_CODE, h.CLUSTER_HEAD_NAME, s.AREA_SQFT, s.OPENING_DATE, case when s.BUDGET_PRORATED > 0 then 'BUDGETED' when s.CY_SALES > 0 then 'UNBUDGETED' else 'NO SALES' end as BUDGET_STATUS, s.CY_SALES, s.CY_GM, s.CY_QTY, s.LY_SALES, s.LY_GM, s.BUDGET_VALUE, coalesce(s.BUDGET_PRORATED, 0) as BUDGET_PRORATED, iff(s.BUDGET_PRORATED > 0, s.CY_SALES, 0) as BUDGETED_CY_SALES, iff(s.SSSG_PCT is not null, s.CY_SALES, 0) as SSSG_CY_SALES, iff(s.SSSG_PCT is not null, s.LY_SALES, 0) as SSSG_LY_SALES, s.CY_PSF, s.CY_GP_PSF, s.BUDGET_PSF, s.PRORATED_ACHIEVEMENT_PCT as ACH_PCT, s.BUDGET_ACHIEVEMENT_PCT as ACH_FULL_PCT, s.SSSG_PCT, s.GP_GROWTH_PCT, s.MTD_SSSG, s.YTD_SSSG, s.GM_MTD_SSSG, s.GM_YTD_SSSG, s.M5_PSF, s.M4_PSF, s.M3_PSF, s.M2_PSF, s.M1_PSF, s.CURRENT_PSF, s.DATA_AS_OF, s.SNAPSHOT_TAKEN_AT from V2RETAIL.GOLD.MIS_STORE_REPORT_SNAPSHOT s left join V2RETAIL.PULSE.V_STORE_HIERARCHY h on h.STORE_CODE = s.STORE_CODE;
+grant select on all views in schema V2RETAIL.PULSE to role PULSE_SVC_ROLE;
+RETURN 'V2Pulse views created: 63';
+END;
+$$;

@@ -1,0 +1,37 @@
+/* V2Pulse look-and-feel overrides, injected into every page by pulse/app.py (spa).
+   Kept outside pulse/static so a web-app rebuild (which empties static/) does not remove them. */
+
+/* Folders in the Reports and Masters libraries use the Microsoft File Explorer folder yellow.
+   The icons are line drawings coloured with currentColor; the folder shapes are matched by their path. */
+svg path[d^="M3 6a1 1 0 0 1 1-1h5l2 2h9"],
+svg path[d^="M3 6a1 1 0 0 1 1-1h5l2 2h8"] {
+  fill: #ffc83d;
+  stroke: #d39b0a;
+}
+/* ...but not the Reports entry in the dark sidebar, which stays a plain line icon like its neighbours. */
+.rail-link svg path[d^="M3 6a1 1 0 0 1 1-1h5l2 2h9"],
+.rail-link svg path[d^="M3 6a1 1 0 0 1 1-1h5l2 2h8"] {
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Sidebar: a tab overrides.js marked data-pulse-inactive is drawn as not active even though the web app set
+   aria-current on it (two tabs on the same path, e.g. Reports and Scheduled Reports). */
+.rail-link[data-pulse-inactive][aria-current=page] {
+  background: transparent;
+  color: var(--rail-text);
+  font-weight: 500;
+}
+.rail-link[data-pulse-inactive][aria-current=page]:hover {
+  background: var(--rail-2);
+  color: var(--rail-text-strong);
+}
+.rail-link[data-pulse-inactive][aria-current=page]:before {
+  display: none;
+}
+
+/* Library chips overrides.js hides: the Scheduled Reports section on the Reports page, and every other section on
+   the Scheduled Reports tab. */
+[role="group"][aria-label="Library"] button.chip[data-pulse-hidden] {
+  display: none !important;
+}

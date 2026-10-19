@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Library trees Â· V2Pulse</title>
+<style>
+  :root { --bg:#f4f6f9; --surface:#fff; --fg:#14202e; --muted:#5b6876; --line:#dde3ea; --brand:#1d4ed8; --brand-soft:#e8eefc;
+          --ok:#1f7a3a; --ok-soft:#e6f4ea; --bad:#b42318; --bad-soft:#fdecea; --folder:#ffc83d; --folder-edge:#d39b0a; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f141a; --surface:#161d26; --fg:#e5eaf0; --muted:#9aa6b2; --line:#26313d;
+          --brand:#7ea2f5; --brand-soft:#1b2740; --ok:#7fcf93; --ok-soft:#15301d; --bad:#f08a80; --bad-soft:#3a1c1a; color-scheme:dark; } }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 "Segoe UI", system-ui, sans-serif }
+  .wrap { max-width:920px; margin:0 auto; padding:28px max(16px, env(safe-area-inset-right, 0px)) 60px max(16px, env(safe-area-inset-left, 0px));
+          display:flex; flex-direction:column; gap:22px }
+  header { display:flex; flex-wrap:wrap; gap:10px 18px; align-items:baseline; justify-content:space-between }
+  h1 { margin:0; font-size:24px } h2 { margin:0; font-size:17px }
+  .muted { color:var(--muted) } a { color:var(--brand) }
+  .links { display:flex; gap:14px; font-size:14px }
+  section { background:var(--surface); border:1px solid var(--line); border-radius:10px; overflow:hidden }
+  section > .head { padding:14px 18px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap }
+  .row { display:grid; grid-template-columns:26px minmax(0,1.3fr) minmax(0,1fr) auto; gap:12px; align-items:center;
+         padding:12px 18px; border-bottom:1px solid var(--line) }
+  .row:last-child { border-bottom:0 }
+  .row .meta { font-size:12.5px; color:var(--muted) }
+  input { width:100%; font:inherit; padding:7px 10px; border:1px solid var(--line); border-radius:7px; background:var(--bg); color:var(--fg) }
+  input:focus { outline:2px solid var(--brand); outline-offset:0; border-color:var(--brand) }
+  input[disabled] { opacity:.65 }
+  .btns { display:flex; gap:6px }
+  button { font:inherit; font-size:13.5px; padding:6px 12px; border-radius:7px; border:1px solid var(--line); background:var(--surface);
+           color:var(--fg); cursor:pointer }
+  button.primary { background:var(--brand); border-color:var(--brand); color:#fff }
+  button:disabled { opacity:.5; cursor:default }
+  button:focus-visible { outline:2px solid var(--brand); outline-offset:2px }
+  .msg { font-size:13px; padding:8px 18px; display:none } .msg.ok { display:block; background:var(--ok-soft); color:var(--ok) }
+  .msg.bad { display:block; background:var(--bad-soft); color:var(--bad) }
+  .notice { padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:10px }
+  .tag { font-size:11.5px; padding:1px 7px; border-radius:5px; background:var(--brand-soft); color:var(--brand); margin-left:6px }
+  svg.folder path { fill:var(--folder); stroke:var(--folder-edge) }
+  .newdir { padding:10px 18px 14px 56px; border-bottom:1px solid var(--line); background:var(--bg) }
+  .newdir:last-child { border-bottom:0 }
+  .newdir-title { display:flex; align-items:center; gap:8px; font-size:13.5px; margin-bottom:8px }
+  .newdir-form { display:flex; gap:8px; flex-wrap:wrap; align-items:center }
+  .newdir-form input { flex:1 1 200px; max-width:280px }
+  .newdir-form select { font:inherit; padding:7px 10px; border:1px solid var(--line); border-radius:7px;
+                        background:var(--surface); color:var(--fg); max-width:260px }
+  @media (max-width:640px) { .row { grid-template-columns:22px minmax(0,1fr); } .row .hi, .row .btns { grid-column:2 } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Library trees</h1>
+      <div class="muted">Rename the top-level trees of the Reports and Masters libraries, and &mdash; for portal administrators &mdash; create new directories inside them. Clear a name to go back to its default.</div>
+    </div>
+    <div class="links"><a href="/reports">Open Reports</a><a href="/masters">Open Masters</a><a href="/">V2Pulse home</a></div>
+  </header>
+  <div id="status" class="notice muted">Loadingâ€¦</div>
+  <div id="sections" style="display:flex;flex-direction:column;gap:22px"></div>
+  <p class="muted" style="font-size:13px;margin:0">Folders inside a tree are renamed and moved in the library itself: open Reports or Masters,
+    pick the tree, click <b>Edit</b>, then use <b>Rename / access</b> or <b>Move toâ€¦</b> on a folder. Every rename here is recorded in the action log.</p>
+</div>
+<script src="/manage/trees.js"></script>
+</body>
+</html>
+

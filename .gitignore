@@ -1,0 +1,23 @@
+# Secrets - never commit
+env.bat
+env.bat.bak*
+keys/
+*.p8
+*.pem
+*.key
+*.pfx
+.env*
+
+# Server runtime / local-only
+venv/
+pgsql/
+logs/
+_pulsebak/
+__pycache__/
+*.py[co]
+*.log
+node_modules/
+
+# Ad-hoc backups made on the server
+deploy/backup-*/
+*.bak_*

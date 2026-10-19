@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulation · V2Pulse</title>
+<link rel="stylesheet" href="/theme/overrides.css">
+<style>
+  /* Simulation (/simulation): a slim masthead, the simulator picker, then Store Revival - inputs on the left,
+     results (headline figures, split by division, ranked table) on the right. Data from /api/v1/simulation. */
+  :root {
+    --bg:#eef1f5; --surface:#ffffff; --surface-2:#f6f8fb; --fg:#0f1b2a; --fg-2:#3f4c5c; --muted:#6a7787; --line:#dde3ea;
+    --mast:#0b1626; --mast-2:#13233a; --mast-fg:#e8eef6; --mast-muted:#9fb0c4;
+    --accent:#0f6b5c; --accent-soft:#e2f2ee; --brand:#1d4ed8; --up:#1b7f3b; --down:#b3261e; --warn:#9a5b00; --warn-soft:#fbf1df;
+    --shadow:0 1px 2px rgba(15,27,42,.06), 0 4px 16px rgba(15,27,42,.05);
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg:#0b1119; --surface:#131c27; --surface-2:#18222f; --fg:#e6ecf2; --fg-2:#c3cdd8; --muted:#93a1b0; --line:#243243;
+    --mast:#070d16; --mast-2:#101b2b; --accent:#4fc3a8; --accent-soft:#12302a; --up:#5fd17f; --down:#ff8a80;
+    --warn:#f0b057; --warn-soft:#2c2212; --shadow:none; color-scheme:dark; } }
+  :root[data-theme="dark"] {
+    --bg:#0b1119; --surface:#131c27; --surface-2:#18222f; --fg:#e6ecf2; --fg-2:#c3cdd8; --muted:#93a1b0; --line:#243243;
+    --mast:#070d16; --mast-2:#101b2b; --accent:#4fc3a8; --accent-soft:#12302a; --up:#5fd17f; --down:#ff8a80;
+    --warn:#f0b057; --warn-soft:#2c2212; --shadow:none; color-scheme:dark; }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14.5px/1.5 "Segoe UI", system-ui, -apple-system, sans-serif }
+  a { color:var(--brand) } :focus-visible { outline:2px solid var(--accent); outline-offset:2px }
+  .num { font-variant-numeric:tabular-nums }
+  .mono { font-family:Consolas, "Cascadia Mono", ui-monospace, monospace; font-size:.92em }
+
+  .mast { background:linear-gradient(180deg, var(--mast), var(--mast-2)); color:var(--mast-fg) }
+  .mast-in { max-width:1440px; margin:0 auto; padding:14px 20px 18px; display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center; justify-content:space-between }
+  .brand { display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none; font-weight:700; font-size:15px }
+  .brand i { width:26px; height:26px; border-radius:7px; background:#1d4ed8; display:inline-block }
+  .mast h1 { margin:6px 0 0; font-size:22px; font-weight:700; letter-spacing:-.01em }
+  .mast p { margin:2px 0 0; color:var(--mast-muted); font-size:13.5px }
+  .who { color:var(--mast-muted); font-size:13px; text-align:right }
+
+  main { max-width:1440px; margin:0 auto; padding:18px 20px 40px; display:grid; gap:16px }
+  .chips { display:flex; flex-wrap:wrap; gap:8px }
+  .chip { font:600 13px inherit; font-family:inherit; padding:6px 12px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--fg); cursor:pointer }
+  .chip[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff }
+  .chip:disabled { cursor:default; color:var(--muted); background:var(--surface-2) }
+  .chip small { font-weight:500; opacity:.8; margin-left:4px }
+
+  .sim { display:grid; gap:16px; grid-template-columns:300px minmax(0,1fr); align-items:start }
+  @media (max-width:900px) { .sim { grid-template-columns:1fr } }
+  .panel { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px; display:grid; gap:15px; box-shadow:var(--shadow) }
+  .field { display:grid; gap:6px }
+  .lbl { font-size:11.5px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--muted) }
+  select { font:inherit; padding:7px 9px; border:1px solid var(--line); border-radius:7px; background:var(--surface); color:var(--fg); width:100% }
+  input[type=range] { width:100%; accent-color:var(--accent) }
+  .big { font-size:26px; font-weight:700; font-variant-numeric:tabular-nums }
+  .big small { font-size:13px; font-weight:400; color:var(--muted) }
+  .seg { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; border:1px solid var(--line); border-radius:7px; overflow:hidden }
+  .seg button { font:600 12.5px inherit; font-family:inherit; padding:7px 6px; border:0; background:var(--surface); color:var(--muted); cursor:pointer }
+  .seg button[aria-pressed="true"] { background:var(--accent-soft); color:var(--accent) }
+  .seg button + button { border-left:1px solid var(--line) }
+  .check { display:flex; gap:8px; align-items:center }
+  .check input { width:16px; height:16px; accent-color:var(--accent) }
+  .hint { font-size:12.5px; color:var(--muted) }
+  .btn { font:600 13px inherit; font-family:inherit; padding:8px 12px; border-radius:7px; border:1px solid var(--line); background:var(--surface); color:var(--fg); cursor:pointer }
+  .btn:disabled { opacity:.5; cursor:default }
+
+  .results { display:grid; gap:14px; min-width:0 }
+  .kpis { display:grid; gap:10px; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)) }
+  .kpi { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:12px 14px; display:grid; gap:2px; box-shadow:var(--shadow) }
+  .kpi .k { font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--muted) }
+  .kpi .v { font-size:22px; font-weight:700; font-variant-numeric:tabular-nums }
+  .kpi .s { font-size:12.5px; color:var(--muted) }
+  .kpi.hero .v { color:var(--up) } .kpi.hero.neg .v { color:var(--down) }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:10px; min-width:0; box-shadow:var(--shadow) }
+  .card-h { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; padding:12px 14px; border-bottom:1px solid var(--line) }
+  .card-h h2 { margin:0; font-size:15px }
+  .bars { display:grid; gap:7px; padding:12px 14px }
+  .bar { display:grid; grid-template-columns:90px minmax(0,1fr) 90px; gap:10px; align-items:center; font-size:13px }
+  .track { height:10px; background:var(--surface-2); border-radius:5px; overflow:hidden }
+  .fill { height:100%; background:var(--accent); border-radius:5px }
+  .fill.neg { background:var(--down) }
+  .bar .val { text-align:right; font-variant-numeric:tabular-nums }
+  .tw { overflow-x:auto }
+  table { border-collapse:collapse; width:100%; font-size:13.5px }
+  th { text-align:left; font-size:11px; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); padding:9px 10px; border-bottom:1px solid var(--line); background:var(--surface-2); white-space:nowrap }
+  td { padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top }
+  tr:last-child td { border-bottom:0 }
+  td.r, th.r { text-align:right; font-variant-numeric:tabular-nums }
+  .up { color:var(--up); font-weight:600 } .down { color:var(--down); font-weight:600 }
+  .frbar { position:relative; display:inline-block; vertical-align:middle; width:90px; height:8px; background:var(--surface-2); border-radius:4px; overflow:hidden; margin-right:6px }
+  .frbar i { position:absolute; left:0; top:0; bottom:0; background:var(--muted); border-radius:4px }
+  .frbar b { position:absolute; top:0; bottom:0; background:var(--accent); opacity:.5 }
+  .state { padding:28px 16px; text-align:center; color:var(--muted) }
+  .warnline { background:var(--warn-soft); color:var(--fg); border-left:3px solid var(--warn); border-radius:0 6px 6px 0; padding:10px 14px; font-size:13px }
+  .busy { opacity:.55; transition:opacity .15s }
+  @media (prefers-reduced-motion: reduce) { .busy { transition:none } }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="mast-in">
+    <div>
+      <a class="brand" href="/"><i></i>V2Pulse</a>
+      <h1>Simulation</h1>
+      <p>What-if tools. Figures are estimates from the latest ARS fill-rate snapshot.</p>
+    </div>
+    <div class="who" id="who"></div>
+  </div>
+</header>
+<main id="main">
+  <div class="chips" role="group" aria-label="Simulations" id="sims"></div>
+
+  <section class="sim" id="revival" aria-label="Store Revival">
+    <form class="panel" id="controls" aria-label="Store Revival inputs">
+      <div class="field">
+        <span class="lbl" id="scopeLbl">Run for</span>
+        <div class="seg" role="group" aria-labelledby="scopeLbl">
+          <button type="button" data-scope="store" aria-pressed="true">Store</button>
+          <button type="button" data-scope="zone" aria-pressed="false">Zone</button>
+          <button type="button" data-scope="all" aria-pressed="false">All stores</button>
+        </div>
+      </div>
+      <div class="field" id="storeField">
+        <label class="lbl" for="store">Store</label>
+        <select id="store"></select>
+        <span class="hint" id="storeHint"></span>
+      </div>
+      <div class="field" id="zoneField" hidden>
+        <label class="lbl" for="zone">Zone</label>
+        <select id="zone"></select>
+      </div>
+      <div class="field">
+        <label class="lbl" for="div">Division</label>
+        <select id="div"></select>
+      </div>
+      <div class="field">
+        <label class="lbl" for="cat">Category</label>
+        <select id="cat"></select>
+      </div>
+      <div class="field">
+        <label class="lbl" for="target">Target fill rate</label>
+        <div class="big"><span id="targetOut">85</span>%<small> of MBQ</small></div>
+        <input type="range" id="target" min="30" max="120" step="5" value="85">
+      </div>
+      <div class="field">
+        <span class="lbl" id="modeLbl">Mode</span>
+        <div class="seg" role="group" aria-labelledby="modeLbl">
+          <button type="button" data-mode="raise" aria-pressed="true">Only raise</button>
+          <button type="button" data-mode="set" aria-pressed="false">Set all to target</button>
+        </div>
+        <span class="hint" id="modeHint"></span>
+      </div>
+      <div class="field">
+        <span class="lbl" id="basisLbl">Demand estimate</span>
+        <div class="seg" role="group" aria-labelledby="basisLbl">
+          <button type="button" data-basis="peer" aria-pressed="true">Peer stores</button>
+          <button type="button" data-basis="own" aria-pressed="false">Store's own rate</button>
+        </div>
+        <span class="hint" id="basisHint"></span>
+      </div>
+      <label class="check"><input type="checkbox" id="cap" checked> Only use stock available in the RDC</label>
+      <button type="button" class="btn" id="csv" disabled>Download list (CSV)</button>
+    </form>
+
+    <div class="results" id="results">
+      <div class="kpis">
+        <div class="kpi hero" id="kHero"><span class="k">Extra sales / 30 days</span><span class="v" id="kSale">–</span><span class="s" id="kSalePct">&nbsp;</span></div>
+        <div class="kpi"><span class="k">Units to send</span><span class="v" id="kUnits">–</span><span class="s" id="kCats">&nbsp;</span></div>
+        <div class="kpi"><span class="k">Stock value</span><span class="v" id="kValue">–</span><span class="s">at selling price</span></div>
+        <div class="kpi"><span class="k">Fill rate</span><span class="v" id="kFr">–</span><span class="s" id="kFrS">&nbsp;</span></div>
+      </div>
+      <div id="notes"></div>
+      <div class="card">
+        <div class="card-h"><h2>By division</h2><span class="hint">Extra sales per 30 days</span></div>
+        <div class="bars" id="divBars"><div class="state">Loading…</div></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><h2>Biggest changes first</h2><span class="hint" id="tblHint">Bar: grey = today, green = after</span></div>
+        <div class="tw">
+          <table id="tbl">
+            <thead><tr id="thead"></tr></thead>
+            <tbody id="tbody"><tr><td class="state" colspan="8">Loading…</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="hint">How it is worked out: units = target × MBQ − stock, capped by RDC stock shared between the stores in the run.
+        Extra sales = units × 30-day sell-through × average selling price. "Peer stores" uses the sell-through of
+        well-stocked stores (85–120% fill rate) in the same category. Categories with fewer than 10 such stores are skipped.</p>
+    </div>
+  </section>
+</main>
+<script src="/simulation/app.js" defer></script>
+</body>
+</html>
